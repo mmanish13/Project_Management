@@ -1,0 +1,118 @@
+&nbsp;
+<mdb-card>
+  <mdb-card-header class="cyan text-white"><mdb-icon fas icon="edit"></mdb-icon>  {{addUserHeader}}</mdb-card-header>
+  <mdb-card-body>
+    <!-- Horizontal material form -->
+    <form>
+      <!-- Grid row -->
+      <div class="form-group row">
+        <!-- Material input -->
+        <label for="txtFirstName" class="col-sm-2 col-form-label font-weight-bold">First Name</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="addUser.FirstName" placeholder="First Name" type="text" class="form-control"
+              id="txtFirstName" name="addUser.FirstName">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <!-- Material input -->
+        <label for="txtLastName" class="col-sm-2 col-form-label font-weight-bold">Last Name</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="addUser.LastName" placeholder="Last Name" type="text" class="form-control"
+              id="txtLastName" name="addUser.LastName">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <!-- Material input -->
+        <label for="txtEmployeeId" class="col-sm-2 col-form-label font-weight-bold">Employee Id</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="addUser.EmployeeId" placeholder="Employee Id" type="text" class="form-control"
+              id="txtEmployeeId" name="addUser.EmployeeId">
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid row -->
+      <div class="form-group row text-center">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-info btn-md" (click)="updateUser()"><mdb-icon fas icon="save"></mdb-icon> Add User</button>
+          <button type="submit" class="btn btn-danger btn-md" (click)="reset()"><mdb-icon fas icon="undo-alt"></mdb-icon> Reset</button>
+        </div>
+      </div>
+      <!-- Grid row -->
+    </form>
+    <!-- Horizontal material form -->
+  </mdb-card-body>
+</mdb-card>
+&nbsp;
+
+<mdb-card>
+  <mdb-card-header class="cyan text-white"><mdb-icon fas icon="search"></mdb-icon> Search User</mdb-card-header>
+  <mdb-card-body>
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input mdbInput type="text" [(ngModel)]="userSearch.FirstName" class="form-control" placeholder="First Name">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input mdbInput type="text" [(ngModel)]="userSearch.LastName"  class="form-control" placeholder="Last Name">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input mdbInput type="text"[(ngModel)]="userSearch.EmployeeId"  class="form-control" placeholder="Employee Id ">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <button type="submit" class="btn btn-info btn-md" (click)="searchUsers()"> <mdb-icon fas icon="search"></mdb-icon>Search</button>
+        </div> 
+      </div>
+      <!-- Grid column -->
+    </div>
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="txtEmployeeId" class="col-sm-1 col-form-label font-weight-bold">Sort By : </label>
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button mdbBtn type="button" color="cyan" class="waves-light" mdbWavesEffect (click)="SortByFirstName()" >First Name <mdb-icon fas icon="arrows-alt-v"></mdb-icon></button>
+                <button mdbBtn type="button" color="cyan" class="waves-light" mdbWavesEffect (click)="SortByLastName()">Last Name <mdb-icon fas icon="arrows-alt-v"></mdb-icon></button>
+                <button mdbBtn type="button" color="cyan" class="waves-light" mdbWavesEffect (click)="SortByEmployeeId()">Employee Id <mdb-icon fas icon="arrows-alt-v"></mdb-icon></button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <table mdbTable>
+      <thead class="cyan white-text">
+        <tr>
+          <th *ngFor="let head of headers" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let user of availableUsers">
+              <th style='display: none;' class="hidden">{{user.UserId}}</th>
+              <th scope="row">{{user.FirstName}}</th>
+              <th scope="row">{{user.LastName}}</th>
+              <th scope="row">{{user.EmployeeId}}</th>
+              <th scope="row">
+                  <button type="submit" class="btn btn-info btn-md" (click)="editUser(user)"><mdb-icon fas icon="edit"></mdb-icon> Edit</button>
+                  <button type="submit" class="btn btn-danger btn-md" (click)="deleteUser(user)"><mdb-icon fas icon="trash-alt"></mdb-icon> Delete</button>
+              </th>
+            </tr>
+      </tbody>
+    </table>
+  </mdb-card-body>
+</mdb-card>

@@ -1,0 +1,191 @@
+&nbsp;
+<mdb-card>
+  <mdb-card-header class="cyan text-white">
+    <mdb-icon fas icon="edit"></mdb-icon> {{addProjectHeader}}
+  </mdb-card-header>
+  <mdb-card-body>
+    <!-- Horizontal material form -->
+    <form>
+      <!-- Grid row -->
+      <div style='display: none' class="form-group row">
+        <!-- Material input -->
+        <label for="txtProjectName" class="col-sm-2 col-form-label font-weight-bold">Project Id</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="addProject.ProjectId" placeholder="Project Name" type="text"
+              class="form-control" id="txtProjectName" name="project.ProjectId">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <!-- Material input -->
+        <label for="txtProjectName" class="col-sm-2 col-form-label font-weight-bold">Project Name</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="addProject.Name" placeholder="Project Name" type="text" class="form-control"
+              id="txtProjectName" name="project.projectName">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <!-- Material input -->
+        <label for="txtStartDate" class="col-sm-2 col-form-label font-weight-bold">Start Date</label>
+        <div class="col-sm-3">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="start" placeholder="Start Date " type="date" class="form-control"
+              id="txtStartDate" name="project.startDate">
+          </div>
+        </div>
+        <label for="txtEndDate" class="col-sm-2 col-form-label font-weight-bold">End Date</label>
+        <div class="col-sm-3">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="end" placeholder="End Date" type="date" class="form-control" id="txtEndDate"
+              name="project.endDate">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <!-- Material input -->
+        <label for="txtEmployeeId" class="col-sm-2 col-form-label font-weight-bold">Priority</label>
+        <div class="col-sm-8">
+          <ng5-slider [(value)]="addProject.Priority" [options]="options" name="Priority"></ng5-slider>
+        </div>
+      </div>
+      <div class="form-group row">
+        <!-- Material input -->
+        <label for="txtManagerName" class="col-sm-2 col-form-label font-weight-bold">Manager Name</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <select name="manager" [(ngModel)]="addProject.ManagerId" class="form-control" id="name">
+              <option selected="" value=""></option>
+              <option [ngValue]="pt.UserId" *ngFor="let pt of availableUsers">
+                {{pt.FirstName}} {{pt.LastName}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Grid row -->
+      <div class="form-group row text-center">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-info btn-md" (click)="updateProject()">
+            <mdb-icon fas icon="save"></mdb-icon> Add Project
+          </button>
+          <button type="submit" class="btn btn-danger btn-md" (click)="reset()">
+            <mdb-icon fas icon="undo-alt"></mdb-icon> Reset
+          </button>
+        </div>
+      </div>
+      <!-- Grid row -->
+    </form>
+    <!-- Horizontal material form -->
+  </mdb-card-body>
+</mdb-card>
+&nbsp;
+
+<mdb-card>
+  <mdb-card-header class="cyan text-white">
+    <mdb-icon fas icon="search"></mdb-icon> Search Project
+  </mdb-card-header>
+  <mdb-card-body>
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input [(ngModel)]="projectSearch.Name" mdbInput type="text" class="form-control" placeholder="Project Name">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input [(ngModel)]="projectSearch.PriorityFrom" mdbInput type="number" class="form-control"
+            placeholder="Prioriy From">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input [(ngModel)]="projectSearch.PriorityTo" mdbInput type="number" class="form-control"
+            placeholder="Prioriy To">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input mdbInput type="text" class="form-control" placeholder="Manager Name ">
+        </div>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input [(ngModel)]="projectSearch.StartDate" mdbInput type="date" class="form-control"
+            placeholder="Project Name">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <input [(ngModel)]="projectSearch.EndDate" mdbInput type="date" class="form-control"
+            placeholder="Prioriy From">
+        </div>
+      </div>
+      <div class="col">
+        <!-- Material input -->
+        <div class="md-form mt-0">
+          <button type="submit" class="btn btn-info btn-md" (click)="searchProjects()">
+            <mdb-icon fas icon="search"></mdb-icon>Search
+          </button>
+        </div>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="txtEmployeeId" class="col-sm-1 col-form-label font-weight-bold">Sort By : </label>
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button mdbBtn type="button" color="cyan" class="waves-light" mdbWavesEffect
+              (click)="SortByName()">Project Name
+              <mdb-icon fas icon="arrows-alt-v"></mdb-icon></button>
+            <button mdbBtn type="button" color="cyan" class="waves-light" mdbWavesEffect
+              (click)="SortByPriority()">Priority <mdb-icon fas icon="arrows-alt-v"></mdb-icon></button>
+            <button mdbBtn type="button" color="cyan" class="waves-light" mdbWavesEffect
+              (click)="SortByStartDate()">Start Date<mdb-icon fas icon="arrows-alt-v"></mdb-icon></button>
+            <button mdbBtn type="button" color="cyan" class="waves-light" mdbWavesEffect
+              (click)="SortByEndDate()">End Date <mdb-icon fas icon="arrows-alt-v"></mdb-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table mdbTable> 
+      <thead class="cyan white-text" >
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of availableProjects">
+          <th style='display: none;' class="hidden">{{project.ProjectId}}</th>
+          <th scope="col">{{project.Name}}</th>
+          <th scope="col">{{project.Priority}}</th>
+          <th scope="col">{{project.StartDate}}</th>
+          <th scope="col">{{project.EndDate}}</th>
+          <th scope="col">
+            <button type="submit" class="btn btn-info btn-md" (click)="editProject(project)" ><mdb-icon fas icon="edit"></mdb-icon>  Edit</button>
+            <button (click)="deleteProject(project)" style="margin-left: 20px;" class="btn btn-danger btn-md"> <mdb-icon fas icon="trash-alt"></mdb-icon>Delete</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </mdb-card-body>
+</mdb-card>

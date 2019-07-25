@@ -1,0 +1,27 @@
+<title>ProjectManager</title>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan">
+  <mdb-navbar-brand><a class="navbar-brand" href="#">
+      <mdb-icon far icon="address-book"></mdb-icon> Project Management Tool
+    </a></mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/AddProject" class="nav-link waves-light" mdbWavesEffect>Add Project</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/AddUser" class="nav-link waves-light" mdbWavesEffect>Add User</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/AddTask" class="nav-link waves-light" mdbWavesEffect>Add Task</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/ViewTask" class="nav-link waves-light" mdbWavesEffect>View Task</a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

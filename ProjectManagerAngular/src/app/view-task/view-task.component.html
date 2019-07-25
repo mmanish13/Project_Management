@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row"> 
+  <label class="col-sm-2 col-form-label  font-weight-bold">Task Name: </label>
+  <div class="col-lg-3">
+    <input class="form-control" name="task" placeholder="Task Name" [(ngModel)]="taskSearch.TaskName">
+  </div>
+  <label class="col-sm-2 col-form-label  font-weight-bold">Parent Task : </label>
+  <div class="col-lg-3">
+    <input class="form-control" name="Parent Task" placeholder="Parent Task" [(ngModel)]="taskSearch.ParentName">
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">&nbsp;</div>
+</div>
+<div class="row">
+  <label class="col-sm-2 col-form-label  font-weight-bold">Priority From : </label>
+  <div class="col-lg-3">
+    <input class="form-control" name="PriorityFrom" placeholder="Priority From" [(ngModel)]="taskSearch.PriorityFrom"
+      type="number">
+  </div>
+  <label class="col-sm-2 col-form-label  font-weight-bold">Priority To : </label>
+  <div class="col-lg-3">
+    <input class="form-control" name="PriorityTo" placeholder="Priority To " [(ngModel)]="taskSearch.PriorityTo"
+      type="number">
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+  <label class="col-sm-2 col-form-label  font-weight-bold">Start Date: </label>
+  <div class="col-lg-3">
+    <input class="form-control" type="date" name="StartDate" placeholder="Start Date"
+      [(ngModel)]="taskSearch.StartDate">
+  </div>
+  <label class="col-sm-2 col-form-label  font-weight-bold">End Date : </label>
+  <div class="col-lg-3">
+    <input class="form-control" type="date" name="End date" placeholder="End Date" [(ngModel)]="parentTask"
+      [(ngModel)]="taskSearch.EndDate">
+  </div>
+</div>
+&nbsp;
+<div class="row">
+  <label class="col-sm-2 col-form-label  font-weight-bold">Project </label>
+  <div class="col-lg-3">
+    <select [(ngModel)]="selectedProjectId" class="form-control" id="parentTask" name="addTask.ParentId">
+      <option selected="" value=""></option>
+      <option [ngValue]="pt.ParentId" *ngFor="let pt of availableProjectsToLoad">
+        {{pt.ParentTaskName}}
+      </option>
+    </select>
+  </div>
+</div>
+&nbsp;
+<div class="row">
+  <div class="col-lg-10 text-center">
+    <div class="form-group">
+      <button id="btnFilter" type="submit" class="btn btn-info" (click)="callService()"> <mdb-icon fas icon="search"></mdb-icon>Search</button>
+      <button id="btnReset" type="submit" class="btn btn-danger" (click)='Reset()'><mdb-icon fas icon="undo-alt"></mdb-icon>Reset</button>
+    </div>
+  </div>
+</div>
+&nbsp;
+
+<div class="row">
+    <div class="col-lg-10 text-center">
+      <div class="form-group">
+          <label class="col-sm-2 col-form-label  font-weight-bold">Sort By :  </label>
+          <button type="button" class="btn " (click)="SortByName()">Task Name</button>
+          <button type="button" class="btn" (click)="SortByPriority()">Priotrity</button>
+          <button type="button" class="btn" (click)="SortByStartDate()">Start Date</button>
+          <button type="button" class="btn" (click)="SortByEndDate()">End Date</button>
+      </div>
+    </div>
+  </div>
+
+<div class="col-lg-12">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Parent</th>
+          <th>Priority</th>
+          <th>Start</th>
+          <th>End</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of availableTasks">
+          <td style="display: none">{{task.TaskId}}</td>
+          <td style="display: none">{{task.ParentId}}</td>
+          <td>{{task.Name}}</td>
+          <td>{{task.ParentTaskName}}</td>
+          <td>{{task.Priority}}</td>
+          <td>{{task.StartDate}}</td>
+          <td>{{task.EndDate}}</td>
+          <td>
+            <button (click)="updateTask(task)" class="btn btn-info">Edit</button>
+            <button (click)="endTask(task)" style="margin-left: 20px;" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

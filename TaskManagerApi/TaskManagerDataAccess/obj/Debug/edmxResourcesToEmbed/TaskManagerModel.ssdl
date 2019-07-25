@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FSECapsuleModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FSECapsuleModelStoreContainer">
+    <EntitySet Name="ParentTasks" EntityType="FSECapsuleModel.Store.ParentTasks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tasks" EntityType="FSECapsuleModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Projects" EntityType="FSECapsuleModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="FSECapsuleModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Task_ParentTask" Association="FSECapsuleModel.Store.FK_Task_ParentTask">
+      <End Role="ParentTask" EntitySet="ParentTasks" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ParentTasks">
+    <Key>
+      <PropertyRef Name="Parent_ID" />
+    </Key>
+    <Property Name="Parent_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Parent_Task" Type="varchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Tasks">
+    <Key>
+      <PropertyRef Name="Task_ID" />
+    </Key>
+    <Property Name="Task_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Parent__ID" Type="int" Nullable="true" />
+    <Property Name="Task1" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="Start_Date" Type="datetime" Nullable="false" />
+    <Property Name="End_Date" Type="datetime" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Project_ID" />
+    </Key>
+    <Property Name="Project_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Project1" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="Start_Date" Type="datetime" Nullable="false" />
+    <Property Name="End_Date" Type="datetime" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Employee_ID" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Task_ID" Type="int" Nullable="true" />
+    <Property Name="Project_ID" Type="int" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_Task_ParentTask">
+    <End Role="ParentTask" Type="FSECapsuleModel.Store.ParentTasks" Multiplicity="0..1" />
+    <End Role="Task" Type="FSECapsuleModel.Store.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ParentTask">
+        <PropertyRef Name="Parent_ID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Parent__ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

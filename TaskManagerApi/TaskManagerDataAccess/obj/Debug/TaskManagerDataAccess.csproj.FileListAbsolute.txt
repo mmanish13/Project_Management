@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\bin\Debug\TaskManagerDataAccess.dll.config
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\bin\Debug\TaskManagerDataAccess.dll
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\bin\Debug\TaskManagerDataAccess.pdb
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\obj\Debug\TaskManagerDataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\obj\Debug\TaskManagerDataAccess.dll
+C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\obj\Debug\TaskManagerDataAccess.pdb

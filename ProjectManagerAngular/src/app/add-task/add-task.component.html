@@ -1,0 +1,94 @@
+&nbsp;
+<mdb-card>
+  <mdb-card-header class="cyan text-white">
+    <mdb-icon fas icon="edit"></mdb-icon> Add Task
+  </mdb-card-header>
+  <mdb-card-body>
+    <form>
+      <div class="form-group row" style='display: none'>
+        <!-- Material input -->
+        <label for="id" class="col-sm-2 col-form-label font-weight-bold">Task Id</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="addTask.TaskId" type="text" class="form-control" id="id" name="addTask.TaskId">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row ">
+        <!-- Material input -->
+        <label for="name" class="col-sm-2 col-form-label font-weight-bold">Project Name</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <select [(ngModel)]="addTask.ProjectId" class="form-control" id="parentTask" (ngModelChange)="onProjectChange($event)" name="addTask.ParentId">
+              <option selected="" value=""></option>
+              <option [ngValue]="pt.ParentId" *ngFor="let pt of availableProjectsToLoad">
+                {{pt.ParentTaskName}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row ">
+        <!-- Material input -->
+        <label for="name" class="col-sm-2 col-form-label font-weight-bold">Task Name</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input mdbInput [(ngModel)]="addTask.Name" type="text" class="form-control" id="name" name="addTask.Name">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row ">
+        <!-- Material input -->
+        <label for="Priority" class="col-sm-2 col-form-label font-weight-bold">Priority</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <ng5-slider [(value)]="addTask.Priority" [options]="options" name="Priority"></ng5-slider>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row ">
+        <label for="parentTask" class="col-sm-2 col-form-label font-weight-bold">Parent Task</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <select [(ngModel)]="addTask.ParentId" class="form-control" id="parentTask" name="addTask.ParentId">
+              <option selected="" value=""></option>
+              <option [ngValue]="pt.ParentId" *ngFor="let pt of availableParentTasks">
+                {{pt.ParentTaskName}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row ">
+        <!-- Material input -->
+        <label for="start" class="col-sm-2 col-form-label font-weight-bold">Start Date</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input type="date" [ngModel]="start | date:'yyyy-MM-dd'" (ngModelChange)="start = $event" name='start'
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row ">
+        <!-- Material input -->
+        <label for="end" class="col-sm-2 col-form-label font-weight-bold">End Date</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+            <input type="date" [ngModel]="end | date:'yyyy-MM-dd'" (ngModelChange)="start = $event" name='end'
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row text-center">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-info btn-md" (click)="saveTask()">
+            <mdb-icon fas icon="save"></mdb-icon> {{addTaskButtonName}}
+          </button>
+          <button type="submit" class="btn btn-danger btn-md" (click)="reset()">
+            <mdb-icon fas icon="undo-alt"></mdb-icon> Reset
+          </button>
+        </div>
+      </div>
+    </form> 
+  </mdb-card-body>
+</mdb-card>

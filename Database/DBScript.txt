@@ -1,0 +1,134 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
+-- --------------------------------------------------
+-- Date Created: 07/25/2019 10:08:36
+-- Generated from EDMX file: C:\Users\Administrator\Desktop\Project-Manager-master\TaskManagerApi\TaskManagerDataAccess\TaskManagerModel.edmx
+-- --------------------------------------------------
+
+SET QUOTED_IDENTIFIER OFF;
+GO
+USE [FSECapsule];
+GO
+IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
+GO
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[FK_Task_ParentTask]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Tasks] DROP CONSTRAINT [FK_Task_ParentTask];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[ParentTasks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ParentTasks];
+GO
+IF OBJECT_ID(N'[dbo].[Tasks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tasks];
+GO
+IF OBJECT_ID(N'[dbo].[Projects]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Projects];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'ParentTasks'
+CREATE TABLE [dbo].[ParentTasks] (
+    [Parent_ID] int IDENTITY(1,1) NOT NULL,
+    [Parent_Task] varchar(250)  NOT NULL
+);
+GO
+
+-- Creating table 'Tasks'
+CREATE TABLE [dbo].[Tasks] (
+    [Task_ID] int IDENTITY(1,1) NOT NULL,
+    [Parent__ID] int  NULL,
+    [Task1] varchar(250)  NOT NULL,
+    [Start_Date] datetime  NOT NULL,
+    [End_Date] datetime  NOT NULL,
+    [Priority] int  NOT NULL,
+    [Project_ID] int  NULL
+);
+GO
+
+-- Creating table 'Projects'
+CREATE TABLE [dbo].[Projects] (
+    [Project_ID] int IDENTITY(1,1) NOT NULL,
+    [Project1] varchar(250)  NOT NULL,
+    [Start_Date] datetime  NOT NULL,
+    [End_Date] datetime  NOT NULL,
+    [Priority] int  NOT NULL
+);
+GO
+
+-- Creating table 'Users'
+CREATE TABLE [dbo].[Users] (
+    [User_ID] int IDENTITY(1,1) NOT NULL,
+    [FirstName] varchar(50)  NULL,
+    [LastName] varchar(50)  NULL,
+    [Employee_ID] varchar(50)  NULL,
+    [Task_ID] int  NULL,
+    [Project_ID] int  NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Parent_ID] in table 'ParentTasks'
+ALTER TABLE [dbo].[ParentTasks]
+ADD CONSTRAINT [PK_ParentTasks]
+    PRIMARY KEY CLUSTERED ([Parent_ID] ASC);
+GO
+
+-- Creating primary key on [Task_ID] in table 'Tasks'
+ALTER TABLE [dbo].[Tasks]
+ADD CONSTRAINT [PK_Tasks]
+    PRIMARY KEY CLUSTERED ([Task_ID] ASC);
+GO
+
+-- Creating primary key on [Project_ID] in table 'Projects'
+ALTER TABLE [dbo].[Projects]
+ADD CONSTRAINT [PK_Projects]
+    PRIMARY KEY CLUSTERED ([Project_ID] ASC);
+GO
+
+-- Creating primary key on [User_ID] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [PK_Users]
+    PRIMARY KEY CLUSTERED ([User_ID] ASC);
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [Parent__ID] in table 'Tasks'
+ALTER TABLE [dbo].[Tasks]
+ADD CONSTRAINT [FK_Task_ParentTask]
+    FOREIGN KEY ([Parent__ID])
+    REFERENCES [dbo].[ParentTasks]
+        ([Parent_ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Task_ParentTask'
+CREATE INDEX [IX_FK_Task_ParentTask]
+ON [dbo].[Tasks]
+    ([Parent__ID]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------
